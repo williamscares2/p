@@ -1,0 +1,284 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<style>
+		#text {
+			font-size: 24px;
+		}
+	</style>
+	<center><b style="color:white" id="text">Penalty Shoutout</b>
+	</center>
+
+
+	
+	<style>
+		#counter {
+			font-size: 24px;
+			font-weight: bold;
+		}
+	</style>
+</head>
+<body>
+	
+	<div id="counter" style="color:yellow"> <b style="color:red">Bal</b><b font-size="2">5000</b></div>
+	<button id="button2"><b style=color:blue>Bonus 100</b></button>
+	<img src="coin.jpg" width="30" length ="30">
+	
+	<script>
+	
+		let count = 5000;
+		const counterElement = document.getElementById('counter');
+		const button2 = document.getElementById('button2');
+		
+		button2.addEventListener('click', () => {
+			if (count < 10000) {
+				count += 100;
+				counterElement.innerText = count;
+			}
+		});
+	
+	</script>
+	
+	<style>
+		#button1{
+			height: 40px; /* Set button height */
+			width: 40px; /* Set button width */
+			font-size: 12px; /* Reduce font size */
+			padding: 5px 10px; /* Reduce padding */
+			transform: scale(0.8); /* Scale button down */
+		}
+	</style>
+		<style>
+		#button5 {
+			height: 40px; /* Set button height */
+			width: 40px; /* Set button width */
+			font-size: 12px; /* Reduce font size */
+			padding: 5px 10px; /* Reduce padding */
+			transform: scale(0.8); /* Scale button down */
+		}
+	</style>
+	<style>
+		#button3 {
+			height: 40px; /* Set button height */
+			width: 40px; /* Set button width */
+			font-size: 12px; /* Reduce font size */
+			padding: 5px 10px; /* Reduce padding */
+			transform: scale(0.8); /* Scale button down */
+		}
+	</style>
+	<style>
+		#button2{
+			height: 50px; /* Set button height */
+			width: 50px; /* Set button width */
+			font-size: 12px; /* Reduce font size */
+			padding: 5px 10px; /* Reduce padding */
+			transform: scale(0.8); /* Scale button down */
+		}
+	</style>
+	
+	<style>
+		#button1{
+			position: absolute;
+			top: 20%;
+			right:0;
+			transform: translateY(30%);
+		}
+	</style>
+	<style>
+		#button2{
+			position: absolute;
+			top: 30%;
+			left: 2;
+			transform: translateY(-50%);
+		}
+	</style>
+	<style>
+		button {
+			border-radius: 50%; /* Make buttons circular */
+			padding: 10px 20px; /* Add some padding */
+			border: none; /* Remove default border */
+			cursor: pointer; /* Change cursor on hover */
+		}
+	</style>
+	<style>
+		#button3{
+			position: absolute;
+			top: 14%;
+			center: 2;
+			transform: translateY(-50%);
+		}
+	</style>
+	<body>
+	
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Move Image</title>
+	<style>
+		#image {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			transition: top 1s, left 1s;
+		}
+	
+	</style>
+</head>
+<style>
+		body {
+			background-image: url('b.jpg');
+			background-size: cover;
+			background-position: center;
+			background-repeat: no-repeat;
+			height: 45vh;
+			margin: 0;
+		}
+	</style>
+
+<style>
+		body {
+			background-image: url('b.jpg');
+			background-size: cover;
+			background-position: center;
+			background-repeat: no-repeat;
+			height: 35vh;
+			margin: 0;
+		}
+	</style>
+<body>
+	
+	<img id="image" src="ball.png" width="35" height="35">
+	
+	
+	<button id="button1" onclick="moveImage(this)" 
+			>odd 20</button> 
+		<button id="button5" onclick="moveImage(this)" 
+			>odd 15🔥</button> 
+	<style>
+		#button5{
+			position: absolute;
+			top: 10%;
+			right:0;
+			transform: translateY(-50%);
+		}
+	</style>
+	
+	<button id="button4" onclick="playAudio()"= onclick="moveImage(this)" 
+			>odd 5🔥</button> 
+	<style>
+		#button4{
+			position: absolute;
+			top: 40%;
+			center: 2;
+			transform: translateY(-50%);
+		}
+	</style>
+	
+	
+	<cente>
+	<button id="button3" onclick="moveImage(this)">odd 50</button>
+	</center>
+	<script>
+		let originalImageTop;
+		let originalImageLeft;
+		
+		function moveImage(button) {
+			let image = document.getElementById('image');
+			let buttonRect = button.getBoundingClientRect();
+			let imageRect = image.getBoundingClientRect();
+			
+			// Store the original image position
+			if (!originalImageTop) {
+				originalImageTop = imageRect.top;
+				originalImageLeft = imageRect.left;
+			}
+			
+			// Move the image towards the button
+			image.style.top = `${buttonRect.top + buttonRect.height / 2 - imageRect.height / 2}px`;
+			image.style.left = `${buttonRect.left + buttonRect.width / 2 - imageRect.width / 2}px`;
+			
+			// Wait for the image to reach the button, then move it back
+			setTimeout(() => {
+				image.style.top = `${originalImageTop}px`;
+				image.style.left = `${originalImageLeft}px`;
+			}, 1000); // adjust the timeout to match the transition duration
+		}
+	</script>
+	<footer>.</footer>
+		<footer>.</footer>
+		<footer>.</footer>
+		<footer>.</footer>
+		<footer>.</footer>
+		<footer>.</footer>
+		
+		<footer>.</footer>
+		<footer>.</footer>
+		<img src="c.png" width="360" length="50">
+	<B>This Game is create for your own 
+		business.
+		If there are any issues 
+		Contact us <a href="tel:0753266873">Here</a>
+	</B>
+	<audio id="audio">
+		<source src="crowd.mp3" type="audio/mp3">
+		Your browser does not support the audio element.
+	</audio>
+	
+	<script>
+		function playAudio() {
+			const audio = document.getElementById('audio');
+			audio.play();
+		}
+	</script>
+	<style>
+		#bouncy-button {
+			background-color: #4CAF50;
+			color: #fff;
+			padding: 10px 20px;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+			animation: bounce 0.5s infinite;
+		}
+		
+		@keyframes bounce {
+			0% {
+				transform: translateY(0);
+			}
+			50% {
+				transform: translateY(-10px);
+			}
+			100% {
+				transform: translateY(0);
+			}
+		}
+	</style>
+	<style>
+		@keyframes move {
+			0% { transform: translateX(-100%); }
+			50% { transform: translateX(100%); }
+			100% { transform: translateX(-100%); }
+		}
+		
+		#moving-image {
+			position: absolute;
+			top: 100%;
+			transform: translateX(-100%);
+			animation: move 2s infinite;
+		}
+	</style>
+<style>
+		#moving-image{
+			position: absolute;
+			top: 15%;
+			center: 2;
+			transform: translateY(-50%);
+		}
+	</style>
+
+	<img id="moving-image" src="goali.png" alt="Moving Image">
+
+
+	<button id=".bouncy-button">More games</button>
+</body>
+</html>
