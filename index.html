@@ -2,48 +2,60 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Loading...</title>
-	<style>
+  <h1>
+    <center><b style="color:white">
+    Welcome
+    </b>
+    </center>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Login</title>
+  <style>
 		body {
-			background-image: url('loading.jpg');
+			background-image: url('x.jpg');
 			background-size: cover;
 			background-position: center;
-			height: 80vh;
+			background-repeat: no-repeat;
+			height: 98vh;
 			margin: 0;
 		}
 	</style>
-</head>
-<body>
-	<script>
-		setTimeout(() => {
-			window.location.href = 'login.html';
-		}, 5000); // 5000 milliseconds = 5 seconds
-	</script>
 	<style>
-		body {
-			font-family: Arial, sans-serif;
-			text-align: center;
+ 
+		.login-container {
+			width: 300px;
+			margin: 50px auto;
+			padding: 20px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+		}
+		.login-form {
+			margin-bottom: 20px;
+		}
+		.login-form input {
+			width: 100%;
+			padding: 10px;
+			margin-bottom: 20px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+		}
+		.login-button {
+			background-color: #4CAF50;
+			color: #fff;
+			padding: 10px 20px;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
 		}
 	</style>
 </head>
 <body>
-	<h1 id="loading-message">Loading, please wait...</h1>
-	<h2 id="countdown">5</h2>
-
-	<script>
-		let count = 5;
-		const countdownElement = document.getElementById('countdown');
-		const loadingMessageElement = document.getElementById('loading-message');
-
-		setInterval(() => {
-			count--;
-			countdownElement.textContent = count;
-
-			if (count === 0) {
-				countdownElement.textContent = '';
-				loadingMessageElement.textContent = 'Loaded!';
-			}
-		}, 1000); // update every 1 second
-	</script>
+	<center>
+		<button class="login-button" onclick="location.href='blur.html'">PLAY</button>
+	</center>
+</body>
+</html>
+  </h1>
 </body>
 </html>
