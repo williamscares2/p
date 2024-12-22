@@ -1,0 +1,35 @@
+<html><head>
+<title>Date Calculator</title>
+<link rel="stylesheet" href="wil.css">
+<style type="text/css" id="operaUserStyle"></style></head>
+<body>
+    <img src="r.jpeg" class="h"><b>Rabbit</b>
+<center>
+<h3>Production Calculator</h3>
+
+<label for="startDate">Start Date:</label><br>
+<input type="date" id="startDate" name="startDate" class="date"><br><br>
+
+<button onclick="calculateEndDate()" class="button">Calculate</button>
+
+<p id="result"></p>
+
+<script>
+function calculateEndDate() {
+  const startDateInput = document.getElementById("startDate");
+  const startDate = new Date(startDateInput.value);
+
+  // Add 21 days to the start date
+  startDate.setDate(startDate.getDate() + 30);
+
+  // Format the end date (e.g., DD/MM/YYYY)
+  const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
+  const formattedEndDate = startDate.toLocaleDateString('en-GB', options); 
+
+  // Display the result
+  const resultParagraph = document.getElementById("result");
+  resultParagraph.textContent = `Expected Date: ${formattedEndDate}`;
+}
+</script>
+</center>
+</body></html>
