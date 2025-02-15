@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Play Store-like App Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        .app-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .app-icon {
+            width: 100px;
+            height: 100px;
+            border-radius: 15px;
+            margin-right: 20px;
+        }
+
+        .app-info h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .app-info p {
+            margin: 5px 0;
+            color: #666;
+        }
+
+        .install-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .install-button:hover {
+            background-color: #45a049;
+        }
+
+        .screenshots {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            overflow-x: auto;
+        }
+
+        .screenshots img {
+            width: 200px;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .details {
+            margin-top: 20px;
+        }
+
+        .details h2 {
+            margin: 0 0 10px 0;
+            font-size: 20px;
+        }
+
+        .details p {
+            margin: 5px 0;
+            color: #666;
+        }
+
+        .additional-features {
+            margin-top: 20px;
+        }
+
+        .additional-features h2 {
+            margin: 0 0 10px 0;
+            font-size: 20px;
+        }
+
+        .additional-features ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .additional-features ul li {
+            margin: 5px 0;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- App Header -->
+        <div class="app-header">
+            <img src="pool.jpg" alt="App Icon" class="app-icon">
+            <div class="app-info">
+                <h1>Pool</h1>
+                <p>Earn and Play the ultimate pool game!</p>
+                <p>4.5 ★ (50+ downloads)</p>
+            </div>
+        </div>
+
+        <!-- Install Button -->
+        <button class="install-button" onclick="downloadApk()">Install</button>
+
+        <!-- Screenshots -->
+        <div class="screenshots">
+            <img src="1.jpg" alt="Screenshot 1">
+            <img src="2.jpg" alt="Screenshot 2">
+            <img src="3.jpg" alt="Screenshot 3">
+        </div>
+
+        <!-- App Details -->
+        <div class="details">
+            <h2>About this game</h2>
+            <p>Pool Master is a fun and challenging pool game that lets you play against players from around the world. Improve your skills and become the ultimate pool master!</p>
+            <p><strong>Download Size:</strong> 2 MB</p>
+            <p><strong>Downloads:</strong> 1000+</p>
+            <p><strong>Version:</strong> 1.2.3</p>
+            <p><strong>Updated:</strong> February 2, 2025</p>
+        </div>
+
+        <!-- Additional Features -->
+        <div class="additional-features">
+            <h2>Additional Features</h2>
+            <ul>
+                <li>Multiplayer mode</li>
+                <li>Daily challenges</li>
+                <li>Customizable cues and tables</li>
+                <li>Leaderboards and achievements</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function downloadApk() {
+            const link = document.createElement('a');
+            link.href = 'pool.apk'; // Replace with the actual path to your APK file
+            link.download = 'pool.apk';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    </script>
+
+</body>
+</html>
