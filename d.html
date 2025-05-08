@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Deposit Funds</title>
+<style>
+  body {
+    font-family: sans-serif;
+  }
+  .input-group {
+    margin-bottom: 10px;
+  }
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  input[type="text"], input[type="number"] {
+    width: 200px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  button {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  button:hover {
+    background-color: #0056b3;
+  }
+  .feedback {
+    margin-top: 10px;
+    font-weight: bold;
+  }
+  .success {
+    color: green;
+  }
+  .error {
+    color: red;
+  }
+</style>
+</head>
+<body>
+
+<h2>Deposit Funds</h2>
+
+<div class="input-group">
+  <label for="phoneNumber">Phone Number (e.g., 7xxxxxxxxx):</label>
+  <input type="text" id="phoneNumber" name="phoneNumber">
+</div>
+
+<div class="input-group">
+  <label for="depositAmount">Amount to Deposit (UGX):</label>
+  <input type="number" id="depositAmount" name="depositAmount">
+</div>
+
+<button id="depositButton">Initiate Deposit</button>
+
+<div id="depositFeedback" class="feedback"></div>
+
+<script>
+  document.getElementById('depositButton').addEventListener('click', function() {
+    const phoneNumberInput = document.getElementById('phoneNumber');
+    const depositAmountInput = document.getElementById('depositAmount');
+    const depositFeedbackDiv = document.getElementById('depositFeedback');
+
+    const phoneNumber = phoneNumberInput.value.trim();
+    const depositAmount = depositAmountInput.value.trim();
+
+    if (!phoneNumber || !depositAmount || isNaN(depositAmount) || parseFloat(depositAmount) <= 0) {
+      depositFeedbackDiv.textContent = "Please enter a valid phone number and deposit amount.";
+      depositFeedbackDiv.className = "feedback error";
+      return;
+    }
+
+    const headers = {
+      'Content-Type': 'application/json',
+      'Accept': '*/*',
+      'X-Country': 'UG',
+      'X-Currency': 'UGX',
+      'Authorization': 'Bearer UC*****2w',
+      'x-signature': 'MGsp*********Ag==',
+      'x-key': 'DVZC***********NM='
+    };
+
+    const inputBody = JSON.stringify({
+      "subscriber": {
+        "msisdn": phoneNumber
+      },
+      "transaction": {
+        "amount": depositAmount,
+        "id": "12***260" // Consider generating a dynamic ID on the backend
+      },
+      "additional_info": [
+        {
+          "key": "remark",
+          "value": "WEB_DEPOSIT" // Updated remark
+        }
+      ],
+      "reference": "WEB_" + Date.now(), // Simple dynamic reference
+      "pin": "KYJE***+o8=" // IMPORTANT: Never expose PIN input directly in frontend in a real application
+    });
+
+    depositFeedbackDiv.textContent = "Processing deposit...";
+    depositFeedbackDiv.className = "feedback";
+
+    fetch('https://openapiuat.airtel.africa/standard/v2/cashin/', {
+      method: 'POST',
+      body: inputBody,
+      headers: headers
+    }).then(function(res) {
+      return res.json();
+    }).then(function(body) {
+      console.log("Deposit Response:", body);
+      if (body && body.status && body.status.code === "200") {
+        depositFeedbackDiv.textContent = "Deposit initiated successfully!";
+        depositFeedbackDiv.className = "feedback success";
+      } else if (body && body.status && body.status.message) {
+        depositFeedbackDiv.textContent = "Deposit failed: " + body.status.message;
+        depositFeedbackDiv.className = "feedback error";
+      } else {
+        depositFeedbackDiv.textContent = "Deposit failed with an unknown error.";
+        depositFeedbackDiv.className = "feedback error";
+      }
+    }).catch(function(error) {
+      console.error("Error during deposit:", error);
+      depositFeedbackDiv.textContent = "Error during deposit. Please try again.";
+      depositFeedbackDiv.className = "feedback error";
+    });
+
+    // Clear input fields after initiating (optional)
+    phoneNumberInput.value = "";
+    depositAmountInput.value = "";
+  });
+</script>
+
+</body>
+</html>
