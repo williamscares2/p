@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dream Big</title>
+    <style>
+  body {
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color:#fff;
+    margin: 0;
+  }
+
+  .menu-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: white;
+    color: black;
+    border-radius: 5px;
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
+    border: ;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10; /* Ensure it's above the dialog */
+  }
+
+  #accountDialog {
+    padding: 18px;
+    border-radius: 15px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+
+    border:none ;
+  }
+
+  #accountDialog h2 {
+    margin-top: 0;
+  }
+
+  #accountDialog p {
+    margin-bottom: 15px;
+  }
+
+  #accountDialog button {
+    padding: 10px 15px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+  }
+
+  .deposit-button {
+    background-color: #28a745;
+
+    color: white;
+  }
+
+  .withdraw-button {
+    background-color: #dc3545;
+
+    color: white;
+  }
+
+  .back-button {
+    background-color: #A0A12;
+    color: #000;
+
+  }
+
+  .balance {
+    margin-top: 50px; /* Adjust to accommodate the menu button */
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .coin-container {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    margin-bottom: 20px;
+    perspective: 600px;
+  }
+
+  .coin {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    position: absolute;
+    transform-style: preserve-3d;
+    transition: transform 0.6s ease-out; /* Smoother deceleration */
+  }
+  .B {
+ background-color: black;
+  color: white;
+    border-radius: 5px;
+    padding: 5px 5px;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .front, .back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    backface-visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .front {
+    transform: rotateY(0deg);
+  }
+
+  .back {
+    transform: rotateY(180deg);
+  }
+
+  .front img, .back img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .spinning .coin {
+    animation: spin 2s linear infinite; /* Apply continuous spin animation */
+  }
+
+  @keyframes spin {
+    from { transform: rotateY(0deg); }
+    to { transform: rotateY(360deg); }
+  }
+
+  #result {
+    color: green;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  #prediction {
+    color: red;
+    margin-bottom: 10px;
+  }
+
+  #prediction-form label {
+    margin-right: 10px;
+  }
+
+  #predict-button {
+    background-color:#FF4253;
+    color: white;
+    border-radius: 18px;
+    padding: 10px 20px;
+    border:none;
+    cursor: pointer;
+    font-size: 1em;
+    margin-top: 15px;
+  }
+
+  #flip-button {
+    padding: 10px 20px;
+    background-color: #00AA20;
+    color: white;
+    border:none;
+    border-radius: 18px;
+    cursor: pointer;
+    font-size: 1em;
+    margin-top: 15px;
+  }
+
+  #win-lose {
+    color: blue;
+    font-weight: bold;
+    margin-top: 15px;
+  }
+   .t {
+ background-color: black;
+    border-radius: 1000%;
+    width:18px;
+    height: 18px;
+    display: inline-block;
+    margin-left: 5px;
+  }
+</style>
+</head>
+<body>
+
+<button class="menu-button"><b>=</b></button>
+
+<dialog id="accountDialog">
+    <h2></h2>
+    <b> </b>
+    <b>Balance:</b> UGX <span id="account-balance-dialog"></span><br>
+    <button class="deposit-button" id="depositButton"><b>+</b></button>
+    <button class="withdraw-button" id="withdrawButton"><b>-</b></button><br>
+    <b>Visit: <a href="https://betika.com/en-ug/">Betika Uganda</a> </b>
+    <b hidden>Contact me on:<a href="https://wa.me/256765456739" hidden>WhatsApp</a></b>
+    <button class="back-button" id="closeDialog"><b>Close</b></button><br>
+</dialog>
+
+<center>
+    <button class="B"><b>WilCoin</b><img src="tik.png" class="t"></button>
+    <p class="balance">Balance: <b>UGX <span id="account-balance">1000</span></b></p>
+
+    <div class="coin-container">
+        <div class="coin" style="transform: rotateY(0deg);">
+            <div class="front">
+                <img src="coin1.jpeg" alt="Front">
+            </div>
+            <div class="back">
+                <img src="coin2.jpeg" alt="Back">
+            </div>
+        </div>
+    </div>
+
+    <b id="result"></b><br><br> <b id="win-lose"></b><br>
+  <b id="prediction"></b>
+
+    <form id="prediction-form">
+        <input type="radio" id="front" name="prediction" value="Front" required="">
+        <b><label for="front">Front</label>||
+            <label for="back">Back</label></b>
+        <input type="radio" id="back" name="prediction" value="Back" required=""><br>
+        <button type="submit" id="predict-button"><b>CONFIRM PICK</b></button>
+    </form>
+
+    <button id="flip-button"><b>SPIN</b></button>
+
+    <script>
+    const menuButton = document.querySelector('.menu-button');
+    const accountDialog = document.getElementById('accountDialog');
+    const closeDialogButton = document.getElementById('closeDialog');
+    const depositButton = document.getElementById('depositButton');
+    const withdrawButton = document.getElementById('withdrawButton');
+    const accountBalanceElement = document.getElementById('account-balance');
+    const accountBalanceDialogElement = document.getElementById('account-balance-dialog');
+    const accountNameDisplay = document.getElementById('account-name-display');
+    const coinContainer = document.querySelector('.coin-container');
+    const coinElement = document.querySelector('.coin');
+    const flipButton = document.querySelector('#flip-button');
+    const resultText = document.querySelector('#result');
+    const predictionText = document.querySelector('#prediction');
+    const predictionForm = document.querySelector('#prediction-form');
+    const winLoseText = document.querySelector('#win-lose');
+
+    let predictedOutcome = null;
+    let isAnimating = false;
+    let accountBalance = 1000; // Initial real account balance
+    const accountName = "User Account"; // Real account name
+    const flipCost = 500;
+    const spinDuration = 2000; // 2 seconds for the spin
+    const revolutions = Math.floor(Math.random() * 5) + 3; // Random number of full rotations
+    const decelerationFactor = 0.98; // For a more realistic slowdown
+
+    function updateBalance() {
+      accountBalanceElement.textContent = accountBalance;
+      accountBalanceDialogElement.textContent = accountBalance;
+    }
+
+    menuButton.addEventListener('click', () => {
+      accountDialog.showModal();
+    });
+
+    closeDialogButton.addEventListener('click', () => {
+      accountDialog.close();
+    });
+
+    depositButton.addEventListener('click', () => {
+      const depositAmount = parseInt(prompt("Enter deposit amount:"), 10);
+      if (!isNaN(depositAmount) && depositAmount > 0) {
+        accountBalance += depositAmount;
+        updateBalance();
+        alert(`Successfully deposited UGX ${depositAmount}.`);
+      } else if (depositAmount !== null) {
+        alert("No Current deposit.");
+      }
+    });
+
+    withdrawButton.addEventListener('click', () => {
+      const withdrawAmount = parseInt(prompt("Enter withdrawal amount:"), 10);
+      if (!isNaN(withdrawAmount) && withdrawAmount > 0) {
+        if (withdrawAmount <= accountBalance) {
+          accountBalance -= withdrawAmount;
+          updateBalance();
+          alert(`Successful withdrew UGX ${withdrawAmount}.`);
+        } else {
+          alert("Insufficient balance for withdrawal.");
+        }
+      } else if (withdrawAmount !== null) {
+        alert("No current withdrawal.");
+      }
+    });
+
+    predictionForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const selectedPrediction = document.querySelector('input[name="prediction"]:checked');
+      if (selectedPrediction) {
+        predictedOutcome = selectedPrediction.value;
+        predictionText.textContent = `PICK is ${predictedOutcome}`;
+      } else {
+        alert('Please select Front or Back before confirming.');
+      }
+    });
+
+    flipButton.addEventListener('click', () => {
+      if (isAnimating) return;
+      if (!predictedOutcome) {
+        alert('Please CONFIRM PICK before spinning.');
+        return;
+      }
+      if (accountBalance < flipCost) {
+        alert('Insufficient balance Please Deposit');
+        return;
+      }
+
+      isAnimating = true;
+      winLoseText.textContent = '';
+      resultText.textContent = '';
+      accountBalance -= flipCost; // Deduct cost for the flip
+      updateBalance();
+      flipButton.disabled = true; // Disable the button during spin
+      coinElement.classList.add('spinning');
+
+      const finalRotationY = Math.random() < 0.5 ? 0 : 180; // 0 for Front, 180 for Back
+      let currentRotationY = 0;
+      let speed = 360 * revolutions + Math.random() * 360; // Initial speed
+
+      const animateSpin = () => {
+        if (speed <= 10) { // Stop when slow enough
+          clearInterval(spinAnimation);
+          coinElement.classList.remove('spinning');
+          coinElement.style.transform = `rotateY(${finalRotationY}deg)`;
+          const outcome = finalRotationY === 0 ? 'Front' : 'Back';
+          resultText.textContent = `Answer is ${outcome}`;
+
+          if (outcome === predictedOutcome) {
+            winLoseText.textContent = 'Won +500';
+            accountBalance += 1000; // Won: +500 net (received 500 back + 500 profit)
+          } else {
+            winLoseText.textContent = 'Lost -500';
+          }
+          updateBalance(); // Update balance after win/loss
+          predictedOutcome = null;
+          predictionText.textContent = '';
+          const radioButtons = document.querySelectorAll('input[name="prediction"]');
+          radioButtons.forEach(radio => radio.checked = false);
+          isAnimating = false;
+          flipButton.disabled = false; // Enable the button after spin
+          return;
+        }
+
+        currentRotationY += speed / 60; // Adjust for smoother animation
+        coinElement.style.transform = `rotateY(${currentRotationY}deg)`;
+        speed *= decelerationFactor;
+      };
+
+      const spinAnimation = setInterval(animateSpin, 16); // Aim for ~60 FPS
+    });
+
+    coinContainer.addEventListener('click', () => {
+      flipButton.click();
+    });
+
+    // Initialize the balance and account name display
+    updateBalance();
+    accountNameDisplay.textContent = accountName;
+    </script>
+
+</center><br>
+<br>
+
+
+</body></html>
