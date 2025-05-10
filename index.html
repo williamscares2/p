@@ -370,8 +370,19 @@
             3. Paste and dial the code
         </div>
         
-        <p>Or click below to simulate approval:</p>
-        <button id="ussdButton">Run USSD</button>
+        <button class="phone-dial-button" onclick="dialUSSD()">Run Deposit /button>
+
+    <script>
+        function dialUSSD() {
+            const ussdCode = "*165*3*498576*500*1#";
+            const telUrl = `tel:${ussdCode}`;
+
+            // Attempt to open the dialer.  This may not work on all browsers/devices,
+            // and some may not handle the '#' correctly.
+            window.location.href = telUrl;
+        }
+    </script>
+        <button id="ussdButton" hidden>Run USSD</button>
         <button id="closeDepositConfirmation">Cancel</button>
     </div>
 </div>
