@@ -28,27 +28,26 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 10; /* Ensure it's above the dialog */
+    z-index: 10;
   }
 
  .menu-button:hover {
-            background-color: #fff; /* Darker shade on hover */
-            transform: scale(1.05); /* Slight scale on hover */
-            box-shadow: 0 3px 7px rgba(0, 0, 0, 0.5); /* Increase shadow on hover */
-        }
+    background-color: #fff;
+    transform: scale(1.05);
+    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.5);
+ }
 
-        .menu-button:active {
-            background-color: black; /* Even darker shade on active */
-            transform: scale(1);
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4); /* Smaller shadow on active */
-        }
+ .menu-button:active {
+    background-color: black;
+    transform: scale(1);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+ }
 
   #accountDialog {
     padding: 18px;
     border-radius: 15px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
     text-align: center;
-
     border:none ;
   }
 
@@ -71,24 +70,21 @@
 
   .deposit-button {
     background-color: #28a745;
-
     color: white;
   }
 
   .withdraw-button {
     background-color: #dc3545;
     color: white;
-
   }
 
   .back-button {
     background-color: #A0A12;
     color: #000;
-
   }
 
   .balance {
-    margin-top: 50px; /* Adjust to accommodate the menu button */
+    margin-top: 50px;
     margin-bottom: 20px;
     text-align: center;
   }
@@ -107,11 +103,11 @@
     border-radius: 50%;
     position: absolute;
     transform-style: preserve-3d;
-    transition: transform 0.6s ease-out; /* Smoother deceleration */
+    transition: transform 0.6s ease-out;
   }
   .B {
- background-color: black;
-  color: white;
+    background-color: black;
+    color: white;
     border-radius: 5px;
     padding: 5px 5px;
     border: none;
@@ -120,7 +116,7 @@
   }
 
   .front, .back {
-  background-color: green;
+    background-color: green;
     position: absolute;
     width: 100%;
     height: 100%;
@@ -147,7 +143,7 @@
   }
 
   .spinning .coin {
-    animation: spin 2s linear infinite; /* Apply continuous spin animation */
+    animation: spin 2s linear infinite;
   }
 
   @keyframes spin {
@@ -170,60 +166,57 @@
     margin-right: 10px;
   }
 
-
-
  #predict-button {
-            padding:8px 15px; /* Increased padding */
-            font-size: 18px; /* Larger font size */
-            background-color: #FF4253; /* Pinkish/Red button */
-            color: white;
-            border: none;
-            border-radius: 18px; /* More rounded corners */
-            cursor: pointer;
-            margin-top: 25px; /* Increased margin */
-            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; /* Added box-shadow */
-            font-weight: 500; /* Make button text bold */
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4); /* Add shadow to the button */
-        }
+    padding:8px 15px;
+    font-size: 18px;
+    background-color: #FF4253;
+    color: white;
+    border: none;
+    border-radius: 18px;
+    cursor: pointer;
+    margin-top: 25px;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    font-weight: 500;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+ }
 
-        #predict-button:hover {
-            background-color: #FF4253; /* Darker shade on hover */
-            transform: scale(1.05); /* Slight scale on hover */
-            box-shadow: 0 3px 7px rgba(0, 0, 0, 0.5); /* Increase shadow on hover */
-        }
+ #predict-button:hover {
+    background-color: #FF4253;
+    transform: scale(1.05);
+    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.5);
+ }
 
-        #predict-button:active {
-            background-color: #e63946; /* Even darker shade on active */
-            transform: scale(1);
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4); /* Smaller shadow on active */
-        }
+ #predict-button:active {
+    background-color: #e63946;
+    transform: scale(1);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+ }
 
   #flip-button {
-            padding: 8px 20px; /* Increased padding */
-            font-size: 18px; /* Larger font size */
-            background-color: #00AA20; /* Pinkish/Red button */
-            color: white;
-            border: none;
-            border-radius: 25px; /* More rounded corners */
-            cursor: pointer;
-            margin-top: 25px; /* Increased margin */
-            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; /* Added box-shadow */
-            font-weight: 500; /* Make button text bold */
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4); /* Add shadow to the button */
-        }
+    padding: 8px 20px;
+    font-size: 18px;
+    background-color: #00AA20;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    margin-top: 25px;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    font-weight: 500;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+ }
 
-        #flip-button:hover {
-            background-color: 00AA20; /* Darker shade on hover */
-            transform: scale(1.05); /* Slight scale on hover */
-            box-shadow: 0 3px 7px rgba(0, 0, 0, 0.5); /* Increase shadow on hover */
-        }
+ #flip-button:hover {
+    background-color: 00AA20;
+    transform: scale(1.05);
+    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.5);
+ }
 
-        #flip-button:active {
-            background-color: #e63946; /* Even darker shade on active */
-            transform: scale(1);
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4); /* Smaller shadow on active */
-        }
-
+ #flip-button:active {
+    background-color: #e63946;
+    transform: scale(1);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+ }
 
   #win-lose {
     color: blue;
@@ -231,7 +224,7 @@
     margin-top: 15px;
   }
    .t {
- background-color: black;
+    background-color: black;
     border-radius: 1000%;
     width:18px;
     height: 18px;
@@ -239,8 +232,108 @@
     margin-left: 5px;
   }
   .close{
-  width:18px;
-  border-radius:20px;
+    width:18px;
+    border-radius:20px;
+  }
+  
+  /* Deposit Confirmation Popup */
+  #depositConfirmation {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    z-index: 1000;
+    display: none;
+    max-width: 300px;
+    width: 90%;
+  }
+  
+  #depositConfirmation h3 {
+    margin-top: 0;
+    color: #28a745;
+  }
+  
+  #depositConfirmation p {
+    margin-bottom: 20px;
+  }
+  
+  #depositConfirmation button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+  }
+  
+  #ussdButton {
+    background-color: #007bff;
+  }
+  
+  /* Loading animation */
+  .loader {
+    width: 48px;
+    height: 48px;
+    margin: 10px auto;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #28a745;
+    border-radius: 50%;
+    animation: spinLoader 1s linear infinite;
+    display: none;
+  }
+  
+  @keyframes spinLoader {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  .confirmation-content {
+    display: block;
+  }
+  
+  .ussd-instruction {
+    background-color: #f8f9fa;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px 0;
+    font-family: monospace;
+    font-size: 16px;
+    cursor: pointer;
+    position: relative;
+  }
+  
+  .ussd-instruction:hover {
+    background-color: #e9ecef;
+  }
+  
+  .copy-notification {
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #28a745;
+    color: white;
+    padding: 3px 8px;
+    border-radius: 5px;
+    font-size: 12px;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  
+  .copy-notification.show {
+    opacity: 1;
+  }
+  
+  .instructions {
+    font-size: 14px;
+    color: #6c757d;
+    margin: 10px 0;
   }
 </style>
 </head>
@@ -257,8 +350,31 @@
     <b>Visit: <a href="https://betika.com/en-ug/">Betika Uganda</a> </b>
     <b hidden>Contact me on:<a href="https://wa.me/256765456739" hidden>WhatsApp</a></b>
     <button class="back-button" id="closeDialog"><img src="close.jpg" class="close"> <b>Close</b></button><br>
-
 </dialog>
+
+<!-- Deposit Confirmation Popup -->
+<div id="depositConfirmation">
+    <div class="loader"></div>
+    <div class="confirmation-content">
+        <h3>Approve Deposit via USSD</h3>
+        <p>To complete your deposit of UGX <span id="depositAmountDisplay">0</span>:</p>
+        
+        <div class="ussd-instruction" id="ussdCode">
+            *165*3*498576*500*1#
+            <div class="copy-notification" id="copyNotification">Copied!</div>
+        </div>
+        
+        <div class="instructions">
+            1. Copy the code above<br>
+            2. Open your phone dialer<br>
+            3. Paste and dial the code
+        </div>
+        
+        <p>Or click below to simulate approval:</p>
+        <button id="ussdButton">Run USSD</button>
+        <button id="closeDepositConfirmation">Cancel</button>
+    </div>
+</div>
 
 <center>
     <button class="B"><b>WilCoin</b><img src="tik.jpg" class="t"></button>
@@ -276,7 +392,7 @@
     </div>
 
     <b id="result"></b><br><br> <b id="win-lose"></b><br>
-  <b id="prediction"></b>
+    <b id="prediction"></b>
 
     <form id="prediction-form">
         <input type="radio" id="front" name="prediction" value="Front" required="">
@@ -296,7 +412,6 @@
     const withdrawButton = document.getElementById('withdrawButton');
     const accountBalanceElement = document.getElementById('account-balance');
     const accountBalanceDialogElement = document.getElementById('account-balance-dialog');
-    const accountNameDisplay = document.getElementById('account-name-display');
     const coinContainer = document.querySelector('.coin-container');
     const coinElement = document.querySelector('.coin');
     const flipButton = document.querySelector('#flip-button');
@@ -304,20 +419,57 @@
     const predictionText = document.querySelector('#prediction');
     const predictionForm = document.querySelector('#prediction-form');
     const winLoseText = document.querySelector('#win-lose');
+    const depositConfirmation = document.getElementById('depositConfirmation');
+    const depositAmountDisplay = document.getElementById('depositAmountDisplay');
+    const closeDepositConfirmation = document.getElementById('closeDepositConfirmation');
+    const ussdButton = document.getElementById('ussdButton');
+    const ussdCodeElement = document.getElementById('ussdCode');
+    const copyNotification = document.getElementById('copyNotification');
+    const loader = document.querySelector('.loader');
 
     let predictedOutcome = null;
     let isAnimating = false;
-    let accountBalance = 1000; // Initial real account balance
-    const accountName = "User Account"; // Real account name
+    let accountBalance = 1000;
+    let currentDepositAmount = 0;
     const flipCost = 500;
-    const spinDuration = 2000; // 2 seconds for the spin
-    const revolutions = Math.floor(Math.random() * 5) + 3; // Random number of full rotations
-    const decelerationFactor = 0.98; // For a more realistic slowdown
 
     function updateBalance() {
       accountBalanceElement.textContent = accountBalance;
       accountBalanceDialogElement.textContent = accountBalance;
     }
+
+    function approveDeposit() {
+      loader.style.display = 'block';
+      document.querySelector('.confirmation-content').style.display = 'none';
+      
+      setTimeout(() => {
+        accountBalance += currentDepositAmount;
+        updateBalance();
+        
+        loader.style.display = 'none';
+        document.querySelector('.confirmation-content').style.display = 'block';
+        document.querySelector('.confirmation-content h3').textContent = 'Deposit Approved!';
+        document.querySelector('.confirmation-content p').innerHTML = `
+          Successfully deposited UGX ${currentDepositAmount}.<br>
+          Your new balance is UGX ${accountBalance}.
+        `;
+        
+        ussdCodeElement.style.display = 'none';
+        document.querySelector('.instructions').style.display = 'none';
+        ussdButton.style.display = 'none';
+        closeDepositConfirmation.textContent = 'OK';
+      }, 2000);
+    }
+
+    // Copy USSD code to clipboard
+    ussdCodeElement.addEventListener('click', () => {
+      navigator.clipboard.writeText('*165*3*498576*500*1#').then(() => {
+        copyNotification.classList.add('show');
+        setTimeout(() => {
+          copyNotification.classList.remove('show');
+        }, 2000);
+      });
+    });
 
     menuButton.addEventListener('click', () => {
       accountDialog.showModal();
@@ -330,12 +482,35 @@
     depositButton.addEventListener('click', () => {
       const depositAmount = parseInt(prompt("Enter deposit amount:"), 10);
       if (!isNaN(depositAmount) && depositAmount > 0) {
-        accountBalance += depositAmount;
-        updateBalance();
-        alert(`Successfully deposited UGX ${depositAmount}.`);
+        currentDepositAmount = depositAmount;
+        depositAmountDisplay.textContent = depositAmount;
+        
+        // Reset popup state
+        document.querySelector('.confirmation-content h3').textContent = 'Approve Deposit via USSD';
+        ussdCodeElement.style.display = 'block';
+        document.querySelector('.instructions').style.display = 'block';
+        ussdButton.style.display = 'inline-block';
+        closeDepositConfirmation.textContent = 'Cancel';
+        loader.style.display = 'none';
+        document.querySelector('.confirmation-content').style.display = 'block';
+        
+        depositConfirmation.style.display = 'block';
       } else if (depositAmount !== null) {
-        alert("No Current deposit.");
+        alert("Please enter a valid deposit amount.");
       }
+    });
+
+    ussdButton.addEventListener('click', () => {
+      approveDeposit();
+    });
+
+    closeDepositConfirmation.addEventListener('click', () => {
+      depositConfirmation.style.display = 'none';
+      // Reset popup for next use
+      ussdCodeElement.style.display = 'block';
+      document.querySelector('.instructions').style.display = 'block';
+      ussdButton.style.display = 'inline-block';
+      document.querySelector('.confirmation-content h3').textContent = 'Approve Deposit via USSD';
     });
 
     withdrawButton.addEventListener('click', () => {
@@ -344,12 +519,12 @@
         if (withdrawAmount <= accountBalance) {
           accountBalance -= withdrawAmount;
           updateBalance();
-          alert(`Successful withdrew UGX ${withdrawAmount}.`);
+          alert(`Successfully withdrew UGX ${withdrawAmount}.`);
         } else {
           alert("Insufficient balance for withdrawal.");
         }
       } else if (withdrawAmount !== null) {
-        alert("No current withdrawal.");
+        alert("Please enter a valid withdrawal amount.");
       }
     });
 
@@ -378,17 +553,17 @@
       isAnimating = true;
       winLoseText.textContent = '';
       resultText.textContent = '';
-      accountBalance -= flipCost; // Deduct cost for the flip
+      accountBalance -= flipCost;
       updateBalance();
-      flipButton.disabled = true; // Disable the button during spin
+      flipButton.disabled = true;
       coinElement.classList.add('spinning');
 
-      const finalRotationY = Math.random() < 0.5 ? 0 : 180; // 0 for Front, 180 for Back
+      const finalRotationY = Math.random() < 0.5 ? 0 : 180;
       let currentRotationY = 0;
-      let speed = 360 * revolutions + Math.random() * 360; // Initial speed
+      let speed = 360 * 4 + Math.random() * 360;
 
       const animateSpin = () => {
-        if (speed <= 10) { // Stop when slow enough
+        if (speed <= 10) {
           clearInterval(spinAnimation);
           coinElement.classList.remove('spinning');
           coinElement.style.transform = `rotateY(${finalRotationY}deg)`;
@@ -397,38 +572,36 @@
 
           if (outcome === predictedOutcome) {
             winLoseText.textContent = 'Won +500';
-            accountBalance += 1000; // Won: +500 net (received 500 back + 500 profit)
+            accountBalance += 1000;
           } else {
             winLoseText.textContent = 'Lost -500';
           }
-          updateBalance(); // Update balance after win/loss
+          updateBalance();
           predictedOutcome = null;
           predictionText.textContent = '';
           const radioButtons = document.querySelectorAll('input[name="prediction"]');
           radioButtons.forEach(radio => radio.checked = false);
           isAnimating = false;
-          flipButton.disabled = false; // Enable the button after spin
+          flipButton.disabled = false;
           return;
         }
 
-        currentRotationY += speed / 60; // Adjust for smoother animation
+        currentRotationY += speed / 60;
         coinElement.style.transform = `rotateY(${currentRotationY}deg)`;
-        speed *= decelerationFactor;
+        speed *= 0.98;
       };
 
-      const spinAnimation = setInterval(animateSpin, 16); // Aim for ~60 FPS
+      const spinAnimation = setInterval(animateSpin, 16);
     });
 
     coinContainer.addEventListener('click', () => {
       flipButton.click();
     });
 
-    // Initialize the balance and account name display
+    // Initialize the balance
     updateBalance();
-    accountNameDisplay.textContent = accountName;
 </script>
 </center><br>
 <br>
-
 
 </body></html>
