@@ -358,7 +358,7 @@
     <div class="confirmation-content">
         <h3>Deposit via USSD</h3>
         <p>Deposit <b>UGX 500</b> Maximam no charge</p>
-        <p>Deposit of UGX <span id="depositAmountDisplay">0</span>:</p>
+        <p>Through MTN UG  of UGX <span id="depositAmountDisplay">0</span>:</p>
 
         <div class="ussd-instruction" id="ussdCode">
             *165*3*498576*Amount*1#
@@ -531,7 +531,7 @@
         if (withdrawAmount <= accountBalance) {
           accountBalance -= withdrawAmount;
           updateBalance();
-          alert(`Successfully withdrew UGX ${withdrawAmount}.`);
+          alert(`Successfully withdrew UGX ${withdrawAmount} To MTN UG`);
         } else {
           alert("Insufficient balance for withdrawal.");
         }
