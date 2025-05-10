@@ -357,11 +357,11 @@
     <div class="loader"></div>
     <div class="confirmation-content">
         <h3>Deposit via USSD</h3>
-        <p>Deposit 500 Maximam no charge</p>
+        <p>Deposit <b>UGX 5000</b> Maximam no charge</p>
         <p>To complete your deposit of UGX <span id="depositAmountDisplay">0</span>:</p>
 
         <div class="ussd-instruction" id="ussdCode">
-            *165*3*498576*500*1#
+            *165*3*498576*Amount*1#
             <div class="copy-notification" id="copyNotification">Copied!</div>
         </div>
 
@@ -371,11 +371,11 @@
             3. Paste and dial the code
         </div>
 
-        <button class="phone-dial-button" onclick="dialUSSD()">Run Deposit </button>
+        <button class="phone-dial-button" onclick="dialUSSD()"><b>1</b>Run Deposit </button>
 
         <script>
         function dialUSSD() {
-            const ussdCode = "*165*3*498576*500*1&#35";
+            const ussdCode = "*165*3*498576*<span id="depositAmountDisplay">0</span>*1%23";
             const telUrl = `tel:${ussdCode}`;
 
             // Attempt to open the dialer.  This may not work on all browsers/devices,
@@ -383,8 +383,8 @@
             window.location.href = telUrl;
         }
     </script>
-        <button id="ussdButton" hidden>Approve Deposit</button>
-        <button id="closeDepositConfirmation">Cancel</button>
+        <button id="ussdButton" hidden><b>2</b>Confirm Deposit</button>
+        <button id="closeDepositConfirmation"><b>3</b>Cancel</button>
     </div>
 </div>
 
