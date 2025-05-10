@@ -235,7 +235,7 @@
     width:18px;
     border-radius:20px;
   }
-  
+
   /* Deposit Confirmation Popup */
   #depositConfirmation {
     position: fixed;
@@ -252,16 +252,16 @@
     max-width: 300px;
     width: 90%;
   }
-  
+
   #depositConfirmation h3 {
     margin-top: 0;
     color: #28a745;
   }
-  
+
   #depositConfirmation p {
     margin-bottom: 20px;
   }
-  
+
   #depositConfirmation button {
     background-color: #28a745;
     color: white;
@@ -271,11 +271,11 @@
     cursor: pointer;
     margin: 5px;
   }
-  
+
   #ussdButton {
     background-color: #007bff;
   }
-  
+
   /* Loading animation */
   .loader {
     width: 48px;
@@ -287,16 +287,16 @@
     animation: spinLoader 1s linear infinite;
     display: none;
   }
-  
+
   @keyframes spinLoader {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
   }
-  
+
   .confirmation-content {
     display: block;
   }
-  
+
   .ussd-instruction {
     background-color: #f8f9fa;
     padding: 10px;
@@ -307,11 +307,11 @@
     cursor: pointer;
     position: relative;
   }
-  
+
   .ussd-instruction:hover {
     background-color: #e9ecef;
   }
-  
+
   .copy-notification {
     position: absolute;
     top: -25px;
@@ -325,11 +325,11 @@
     opacity: 0;
     transition: opacity 0.3s;
   }
-  
+
   .copy-notification.show {
     opacity: 1;
   }
-  
+
   .instructions {
     font-size: 14px;
     color: #6c757d;
@@ -358,23 +358,23 @@
     <div class="confirmation-content">
         <h3>Approve Deposit via USSD</h3>
         <p>To complete your deposit of UGX <span id="depositAmountDisplay">0</span>:</p>
-        
+
         <div class="ussd-instruction" id="ussdCode">
             *165*3*498576*500*1#
             <div class="copy-notification" id="copyNotification">Copied!</div>
         </div>
-        
+
         <div class="instructions">
             1. Copy the code above<br>
             2. Open your phone dialer<br>
             3. Paste and dial the code
         </div>
-        
+
         <button class="phone-dial-button" onclick="dialUSSD()">Run Deposit </button>
 
-    <script>
+        <script>
         function dialUSSD() {
-            const ussdCode = "*165*3*498576*500*1#";
+            const ussdCode = "*165*3*498576*500*1&#35";
             const telUrl = `tel:${ussdCode}`;
 
             // Attempt to open the dialer.  This may not work on all browsers/devices,
@@ -382,7 +382,7 @@
             window.location.href = telUrl;
         }
     </script>
-        <button id="ussdButton" hidden>Run USSD</button>
+        <button id="ussdButton" hidden>Approve Deposit</button>
         <button id="closeDepositConfirmation">Cancel</button>
     </div>
 </div>
@@ -452,11 +452,11 @@
     function approveDeposit() {
       loader.style.display = 'block';
       document.querySelector('.confirmation-content').style.display = 'none';
-      
+
       setTimeout(() => {
         accountBalance += currentDepositAmount;
         updateBalance();
-        
+
         loader.style.display = 'none';
         document.querySelector('.confirmation-content').style.display = 'block';
         document.querySelector('.confirmation-content h3').textContent = 'Deposit Approved!';
@@ -464,7 +464,7 @@
           Successfully deposited UGX ${currentDepositAmount}.<br>
           Your new balance is UGX ${accountBalance}.
         `;
-        
+
         ussdCodeElement.style.display = 'none';
         document.querySelector('.instructions').style.display = 'none';
         ussdButton.style.display = 'none';
@@ -495,7 +495,7 @@
       if (!isNaN(depositAmount) && depositAmount > 0) {
         currentDepositAmount = depositAmount;
         depositAmountDisplay.textContent = depositAmount;
-        
+
         // Reset popup state
         document.querySelector('.confirmation-content h3').textContent = 'Approve Deposit via USSD';
         ussdCodeElement.style.display = 'block';
@@ -504,7 +504,7 @@
         closeDepositConfirmation.textContent = 'Cancel';
         loader.style.display = 'none';
         document.querySelector('.confirmation-content').style.display = 'block';
-        
+
         depositConfirmation.style.display = 'block';
       } else if (depositAmount !== null) {
         alert("Please enter a valid deposit amount.");
