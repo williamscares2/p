@@ -31,6 +31,18 @@
     z-index: 10; /* Ensure it's above the dialog */
   }
 
+ .menu-button:hover {
+            background-color: #fff; /* Darker shade on hover */
+            transform: scale(1.05); /* Slight scale on hover */
+            box-shadow: 0 3px 7px rgba(0, 0, 0, 0.5); /* Increase shadow on hover */
+        }
+
+        .menu-button:active {
+            background-color: black; /* Even darker shade on active */
+            transform: scale(1);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4); /* Smaller shadow on active */
+        }
+
   #accountDialog {
     padding: 18px;
     border-radius: 15px;
@@ -65,8 +77,8 @@
 
   .withdraw-button {
     background-color: #dc3545;
-
     color: white;
+
   }
 
   .back-button {
@@ -90,8 +102,8 @@
   }
 
   .coin {
-    width: 100%;
-    height: 100%;
+    width: 110%;
+    height: 110%;
     border-radius: 50%;
     position: absolute;
     transform-style: preserve-3d;
@@ -108,11 +120,12 @@
   }
 
   .front, .back {
+  background-color: green;
     position: absolute;
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    backface-visibility: hidden;
+    backface-visibility:hidden ;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -157,27 +170,60 @@
     margin-right: 10px;
   }
 
-  #predict-button {
-    background-color:#FF4253;
-    color: white;
-    border-radius: 18px;
-    padding: 10px 20px;
-    border:none;
-    cursor: pointer;
-    font-size: 1em;
-    margin-top: 15px;
-  }
+
+
+ #predict-button {
+            padding:8px 15px; /* Increased padding */
+            font-size: 18px; /* Larger font size */
+            background-color: #FF4253; /* Pinkish/Red button */
+            color: white;
+            border: none;
+            border-radius: 18px; /* More rounded corners */
+            cursor: pointer;
+            margin-top: 25px; /* Increased margin */
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; /* Added box-shadow */
+            font-weight: 500; /* Make button text bold */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4); /* Add shadow to the button */
+        }
+
+        #predict-button:hover {
+            background-color: #FF4253; /* Darker shade on hover */
+            transform: scale(1.05); /* Slight scale on hover */
+            box-shadow: 0 3px 7px rgba(0, 0, 0, 0.5); /* Increase shadow on hover */
+        }
+
+        #predict-button:active {
+            background-color: #e63946; /* Even darker shade on active */
+            transform: scale(1);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4); /* Smaller shadow on active */
+        }
 
   #flip-button {
-    padding: 10px 20px;
-    background-color: #00AA20;
-    color: white;
-    border:none;
-    border-radius: 18px;
-    cursor: pointer;
-    font-size: 1em;
-    margin-top: 15px;
-  }
+            padding: 8px 20px; /* Increased padding */
+            font-size: 18px; /* Larger font size */
+            background-color: #00AA20; /* Pinkish/Red button */
+            color: white;
+            border: none;
+            border-radius: 25px; /* More rounded corners */
+            cursor: pointer;
+            margin-top: 25px; /* Increased margin */
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; /* Added box-shadow */
+            font-weight: 500; /* Make button text bold */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4); /* Add shadow to the button */
+        }
+
+        #flip-button:hover {
+            background-color: 00AA20; /* Darker shade on hover */
+            transform: scale(1.05); /* Slight scale on hover */
+            box-shadow: 0 3px 7px rgba(0, 0, 0, 0.5); /* Increase shadow on hover */
+        }
+
+        #flip-button:active {
+            background-color: #e63946; /* Even darker shade on active */
+            transform: scale(1);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4); /* Smaller shadow on active */
+        }
+
 
   #win-lose {
     color: blue;
@@ -191,6 +237,10 @@
     height: 18px;
     display: inline-block;
     margin-left: 5px;
+  }
+  .close{
+  width:18px;
+  border-radius:20px;
   }
 </style>
 </head>
@@ -206,20 +256,21 @@
     <button class="withdraw-button" id="withdrawButton"><b>-</b></button><br>
     <b>Visit: <a href="https://betika.com/en-ug/">Betika Uganda</a> </b>
     <b hidden>Contact me on:<a href="https://wa.me/256765456739" hidden>WhatsApp</a></b>
-    <button class="back-button" id="closeDialog"><b>Close</b></button><br>
+    <button class="back-button" id="closeDialog"><img src="close.jpg" class="close"> <b>Close</b></button><br>
+
 </dialog>
 
 <center>
-    <button class="B"><b>WilCoin</b><img src="tik.png" class="t"></button>
+    <button class="B"><b>WilCoin</b><img src="tik.jpg" class="t"></button>
     <p class="balance">Balance: <b>UGX <span id="account-balance">1000</span></b></p>
 
     <div class="coin-container">
         <div class="coin" style="transform: rotateY(0deg);">
             <div class="front">
-                <img src="coin1.jpeg" alt="Front">
+                <img src="coin1.jpg" alt="Front">
             </div>
             <div class="back">
-                <img src="coin2.jpeg" alt="Back">
+                <img src="coin2.jpg" alt="Back">
             </div>
         </div>
     </div>
@@ -232,7 +283,7 @@
         <b><label for="front">Front</label>||
             <label for="back">Back</label></b>
         <input type="radio" id="back" name="prediction" value="Back" required=""><br>
-        <button type="submit" id="predict-button"><b>CONFIRM PICK</b></button>
+        <button type="submit" id="predict-button"><b>CONFIRM</b></button>
     </form>
 
     <button id="flip-button"><b>SPIN</b></button>
@@ -307,7 +358,7 @@
       const selectedPrediction = document.querySelector('input[name="prediction"]:checked');
       if (selectedPrediction) {
         predictedOutcome = selectedPrediction.value;
-        predictionText.textContent = `PICK is ${predictedOutcome}`;
+        predictionText.textContent = `Choice is ${predictedOutcome}`;
       } else {
         alert('Please select Front or Back before confirming.');
       }
@@ -316,7 +367,7 @@
     flipButton.addEventListener('click', () => {
       if (isAnimating) return;
       if (!predictedOutcome) {
-        alert('Please CONFIRM PICK before spinning.');
+        alert('Please CONFIRM choice before spinning.');
         return;
       }
       if (accountBalance < flipCost) {
@@ -375,8 +426,7 @@
     // Initialize the balance and account name display
     updateBalance();
     accountNameDisplay.textContent = accountName;
-    </script>
-
+</script>
 </center><br>
 <br>
 
