@@ -242,7 +242,8 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: white;
+    background-color: BLACK;
+    COLOR:WHITE;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
@@ -273,7 +274,7 @@
   }
 
   #ussdButton {
-    background-color: #007bff;
+    background-color: #00AA20;
   }
 
   /* Loading animation */
@@ -298,7 +299,7 @@
   }
 
   .ussd-instruction {
-    background-color: #f8f9fa;
+    background-color: #BLACK;
     padding: 10px;
     border-radius: 5px;
     margin: 10px 0;
@@ -335,6 +336,57 @@
     color: #6c757d;
     margin: 10px 0;
   }
+  .v {
+    padding:8px 15px;
+    font-size: 18px;
+    background-color: #FF4253;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-top: 25px;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    font-weight: 500;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+ }
+
+ .v:hover {
+    background-color: #FF4253;
+    transform: scale(1.05);
+    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.5);
+ }
+
+ .v:active {
+    background-color: #e63946;
+    transform: scale(1);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+ }
+  .u{
+    padding:8px 15px;
+    font-size: 18px;
+    background-color: #FF4253;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-top: 25px;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    font-weight: 500;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+ }
+
+ .u:hover {
+    background-color: #FF4253;
+    transform: scale(1.05);
+    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.5);
+ }
+
+ .u:active {
+    background-color: #e63946;
+    transform: scale(1);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+ }
+
 </style>
 </head>
 <body>
@@ -356,26 +408,25 @@
 <div id="depositConfirmation">
     <div class="loader"></div>
     <div class="confirmation-content">
-        <h3>Deposit via USSD</h3>
-        <p>Deposit <b>UGX 500</b> Maximam no charge</p>
-        <p>Through MTN UG  of UGX <span id="depositAmountDisplay">0</span>:</p>
+        <h3>Deposit via USSD code</h3>
+        <B>Through MTN UG  </B>
+        <p>Deposit <b>UGX <span id="depositAmountDisplay"></span></b> no tax charge</p>
 
-        <div class="ussd-instruction" id="ussdCode">
-            *165*3*498576*Amount*1#
+
+        <div class="ussd-instruction" id="ussdCode" >
+            *165*3*498576#
             <div class="copy-notification" id="copyNotification">Copied!</div>
         </div>
 
         <div class="instructions">
-            1. Copy the code above<br>
-            2. Open your phone dialer<br>
-            3. Paste and dial the code
+
         </div>
 
-        <button class="phone-dial-button" onclick="dialUSSD()"><b>1.</b>Run Deposit </button>
+
 
         <script>
         function dialUSSD() {
-            const ussdCode = "*165*3*498576*500*1%23";
+            const ussdCode = "*165*3*498576%23";
             const telUrl = `tel:${ussdCode}`;
 
             // Attempt to open the dialer.  This may not work on all browsers/devices,
@@ -383,7 +434,8 @@
             window.location.href = telUrl;
         }
     </script>
-        <button id="ussdButton" hidden><b>2.</b>Confirm Deposit</button>
+        <button class="v" onclick="dialUSSD()"><B>1.</B><b>Run Deposit</b> </button><br>
+        <button id="ussdButton"  CLASS="u"><B>2.</B><b>Approve</b></button><br>
         <button id="closeDepositConfirmation"><b>3.</b>Cancel</button>
     </div>
 </div>
@@ -475,7 +527,7 @@
 
     // Copy USSD code to clipboard
     ussdCodeElement.addEventListener('click', () => {
-      navigator.clipboard.writeText('*165*3*498576*500*1#').then(() => {
+      navigator.clipboard.writeText('*165*3*498576#').then(() => {
         copyNotification.classList.add('show');
         setTimeout(() => {
           copyNotification.classList.remove('show');
