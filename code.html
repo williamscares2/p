@@ -1,55 +1,225 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>MTN USSD Code</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MTN USSD Code | Tip Star UG</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #FFC107;
+      --primary-dark: #FFA000;
+      --secondary: #212121;
+      --background: #121212;
+      --surface: #1E1E1E;
+      --text-primary: #FFFFFF;
+      --text-secondary: #BDBDBD;
+      --success: #4CAF50;
+      --border-radius: 16px;
+      --box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: var(--background);
+      color: var(--text-primary);
+      min-height: 100vh;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    
+    header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    
+    .logo {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+    
+    .subtitle {
+      color: var(--text-secondary);
+      font-weight: 300;
+      margin-bottom: 24px;
+    }
+    
+    .card {
+      background-color: var(--surface);
+      border-radius: var(--border-radius);
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: var(--box-shadow);
+      text-align: center;
+    }
+    
+    .card-title {
+      font-size: 18px;
+      margin-bottom: 16px;
+      color: var(--primary);
+    }
+    
+    .mtn-logo {
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+      margin: 0 auto 16px;
+      filter: drop-shadow(0 4px 8px rgba(255, 193, 7, 0.3));
+    }
+    
+    .btn {
+      display: inline-block;
+      padding: 14px 24px;
+      border-radius: 50px;
+      font-weight: 500;
+      text-decoration: none;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: none;
+      font-size: 16px;
+      width: 100%;
+      margin-bottom: 12px;
+    }
+    
+    .btn-primary {
+      background-color: var(--primary);
+      color: var(--secondary);
+    }
+    
+    .btn-primary:hover {
+      background-color: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(255, 193, 7, 0.3);
+    }
+    
+    .btn-secondary {
+      background-color: transparent;
+      color: var(--primary);
+      border: 1px solid var(--primary);
+    }
+    
+    .btn-secondary:hover {
+      background-color: rgba(255, 193, 7, 0.1);
+    }
+    
+    .price-tag {
+      background-color: rgba(76, 175, 80, 0.2);
+      color: var(--success);
+      padding: 8px 16px;
+      border-radius: 50px;
+      font-weight: 500;
+      margin: 16px 0;
+      display: inline-block;
+    }
+    
+    .instructions {
+      background-color: var(--surface);
+      border-radius: var(--border-radius);
+      padding: 20px;
+      box-shadow: var(--box-shadow);
+    }
+    
+    .instructions h3 {
+      color: var(--primary);
+      margin-bottom: 12px;
+      font-size: 18px;
+    }
+    
+    .instructions p {
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+    
+    .divider {
+      height: 1px;
+      background-color: rgba(255, 255, 255, 0.1);
+      margin: 20px 0;
+    }
+    
+    .animation {
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.05);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+    
+    footer {
+      text-align: center;
+      margin-top: 24px;
+      color: var(--text-secondary);
+      font-size: 12px;
+    }
+  </style>
 </head>
 <body>
-  <center>
-  <h2>Tip Star UG</h2>
+  <header>
+    <div class="logo">Tip Star UG</div>
+    <div class="subtitle">Quick & Secure Payments</div>
+  </header>
   
-
-  <h4>Get via MTN</h4>
-  <div style="text-align: center;">
-    <img src="mtn.png" alt="MTN Logo" class="m" width="70"> 
+  <div class="card">
+    <h2 class="card-title">Get via MTN</h2>
+    <img src="mtn.png" alt="MTN Logo" class="mtn-logo animation" hidden>
+    
+    <div class="price-tag">Odd 2+ = UGX 500</div> 
+           <button id="run-ussd" class="btn btn-primary">Start Payment</button>
+    <a href="https://chat.whatsapp.com/Gn8LbQJT1dx1GYzySbiw3l" class="btn btn-secondary">Join WhatsApp Group</a>
   </div>
   
-  <button id="run-ussd" class="b">Run USSD Code</button>
-<script>
-document.getElementById('run-ussd').addEventListener('click', function() {
-var ussdCode = "*165*3*053522*500*1%23"; // Replace with your desired USSD code
-if (confirm("Run Payment Code in Phone on MTN UG")) {
-window.location.href = "tel:" + ussdCode;
-
-}
-});
-</script>  </center>
-      <style>
-      .b{
-            position:absolute;
-            top:360px;
-            left:130px;
-            height:50px;
-            width:100px;
-            border-radius:10px;
-            background-color:#000;
-            color:white;
-      }
+  <div class="instructions">
+    <h3>Instructions</h3>
+    <div class="divider"></div>
+    <p>1. Click the "Start Payment" button above</p>
+    <p>2. Confirm the payment request</p>
+    <p>3. The code will automatically dial on your phone</p>
+    <p>4. Follow the prompts to complete your payment</p>
+  </div>
+  
+  <footer>
+    © 2025 Tip Star UG | Secure Payments
+  </footer>
+  
+  <script>
+    document.getElementById('run-ussd').addEventListener('click', function() {
+      var ussdCode = "*165*3*053522*500*1%23";
       
-      </style>
-      <center>
-      <b>Odd 2</b> = Shs.500
-            <h1>      </h1>
-      </center>
-      <B>Instructions</B>
-      <p>Click button to Start Payment code and run it in phone</p>
-      <p class="p"></p>
-        <style>
-      .m{
-           border-radius:10px; 
+      if (confirm("Run Payment Code on your MTN UG line?")) {
+        window.location.href = "tel:" + ussdCode;
       }
-      
-      </style>
+    });
+    
+    // Add animation on hover
+    const buttons = document.querySelectorAll('.btn');
+    buttons.forEach(button => {
+      button.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-2px)';
+      });
+      button.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0)';
+      });
+    });
+  </script>
 </body>
 </html>
