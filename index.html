@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My KONAMI Content Only</title>
+    <style>
+        /* General Setup */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0; /* Light gray background */
+        }
+        
+        /* Simulated Konami Logo/Text (Top Bar) */
+        .top-konami-logo {
+            background-color: white;
+            padding: 1px 0;
+            text-align: center;
+            /* KONAMI logo is an image, using text placeholder */
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* No Internet Bar */
+        .no-internet {
+            color: white;
+            font-size: 14px;
+            padding: 0px 0;
+            background-color: white;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        /* Main Red Header */
+        .header-main {
+            background-color: #c90000; /* Konami Red */
+            color: white;
+            padding: 15px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header-main h2 {
+            font-size: 24px;
+            margin: 0;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+        .menu-button {
+            background: none;
+            border: 1px solid white;
+            color: white;
+            font-size: 24px;
+            padding: 0 1px;
+            line-height: 1;
+            height: 30px;
+            cursor: pointer;
+        }
+
+        /* Main Content Area */
+        .content-area {
+            background-color:  #c90000;
+            padding: 20px 15px;
+        }
+
+        /* Auth Blocks */
+        .auth-block {
+            margin-bottom: 30px;
+        }
+        .auth-label {
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+            color: white;
+            margin-bottom: 15px;
+        }
+        .auth-label i {
+            margin-right: 15px;
+            font-size: 20px;
+            color: #c90000; /* Red color for icons */
+        }
+
+        /* Action Buttons */
+        .action-button {
+            display: block;
+            width: 100%;
+            padding: 15px 20px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 5px;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.2s;
+        }
+        .log-in-btn {
+            background-color: white;
+            color: red;
+            border: 0px solid #c90000;
+            text-align: center;
+        }
+        .register-btn {
+            background-color: white;
+            color: #c90000;
+            border: 1px solid #c90000;
+        }
+        .arrow {
+            font-size: 20px;
+            line-height: 1;
+            font-family: sans-serif; /* Ensure the arrow looks clean */
+        }
+
+        /* KONAMI ID Banner (Complex Visual Section) */
+        .konami-id-banner {
+            margin-top: 20px;
+            position: relative;
+            overflow: hidden;
+            padding: 50px 20px 20px; /* Increased top padding to hold the graphic */
+            text-align: center;
+            background-color: white;
+        }
+        /* Graphics approximation using multiple layered pseudo-elements */
+        .konami-id-banner::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            height: 300px;
+            border: 15px solid rgba(201, 0, 0, 0.15); /* Main semi-transparent red ring */
+            border-radius: 50%;
+            box-sizing: border-box;
+            z-index: 1;
+        }
+        .konami-id-banner::after {
+            /* Simulating the yellow/pink abstract background graphics */
+            content: '';
+            position: absolute;
+            top: 5px;
+            left: 10%;
+            width: 50px;
+            height: 50px;
+            background-color: #ffeb3b; /* Yellow dot */
+            border-radius: 50%;
+            opacity: 0.5;
+            z-index: 0;
+        }
+        .banner-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .konami-id-text h3 {
+            color: #c90000;
+            font-size: 28px;
+            font-weight: 900;
+            margin: 0 0 10px 0;
+            letter-spacing: 0.5px;
+        }
+        .konami-id-text p {
+            font-size: 16px;
+            color: #333;
+            margin: 0 0 15px 0;
+            line-height: 1.4;
+            text-align: left;
+        }
+        .konami-id-text strong {
+            font-weight: bold;
+        }
+        .konami-id-disclaimer {
+            font-size: 12px;
+            color: #666;
+            text-align: left;
+            margin-top: 10px;
+        }
+
+        /* Information Footer */
+        .info-footer {
+            background-color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #ddd;
+            margin-top: 10px; /* Separates it from the banner */
+        }
+        .info-footer h4 {
+            margin: 0;
+            font-size: 16px;
+            color: #333;
+        }
+        .info-footer a {
+            text-decoration: none;
+            color: #999;
+            font-size: 14px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-konami-logo">
+       
+    </div>
+  <img src="a.jpg" style="width:500px;height:50px;">
+    <div class="no-internet">
+        <span style="color: red; margin-right: 5px;"></span> 
+    </div>
+
+    <div class="header-main">
+        <h2>My KONAMI</h2>
+        <button class="menu-button">&#x2261;</button> </div>
+
+    <div class="content-area">
+        
+        <div class="auth-block">
+            <div class="auth-label">
+                <i style="font-style: normal;">&#x1F464;</i> Log in to My KONAMI here
+            </div>
+            <a href="log.html" class="action-button log-in-btn">
+                <center>Log In</center>  
+                <span class="arrow">&gt;</span>
+            </a>
+        </div>
+        
+        <div class="auth-block">
+            <div class="auth-label">
+                <i style="font-style: normal;">&#x270D;</i> For First Time Visitors
+            </div>
+            <a href="#" class="action-button register-btn">
+                Register KONAMI ID
+                <span class="arrow">&gt;</span>
+            </a>
+        </div>
+
+        <div class="konami-id-banner">
+            <div class="banner-content">
+                <div class="konami-id-text">
+                    <h3>KONAMI ID</h3>
+                    <p>
+                        Play more with <b>KONAMI ID</b>. Enjoy more with <b>KONAMI ID</b> .
+                    </p>
+                </div>
+            </div>
+            <div class="konami-id-disclaimer">
+                A KONAMI ID is your own unique ID which allows you to use online services provided by the KONAMI Group. Registration and usage is free.
+            </div>
+        </div>
+        
+    </div>
+    
+    <div class="info-footer">
+        <h4>Information</h4>
+        <a href="#">more</a>
+    </div>
+
+</body>
+</html>
