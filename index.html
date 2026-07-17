@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebClass Portal - Home</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --primary-blue: #3b82f6;
+            --primary-blue-hover: #2563eb;
+            --primary-green: #10b981;
+            --primary-green-hover: #059669;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+
+        .portal-container {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+            width: 100%;
+            max-width: 480px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .logo-container {
+            margin-bottom: 25px;
+        }
+
+        .school-logo {
+            max-height: 80px;
+            object-fit: contain;
+            /* Graceful fallback if school_logo.png is not in the directory yet */
+            alt: "School Logo";
+            border-radius: 8px;
+        }
+
+        h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin: 10px 0 5px 0;
+            letter-spacing: -0.5px;
+        }
+
+        p {
+            color: var(--text-muted);
+            margin: 0 0 35px 0;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .portal-btn {
+            padding: 16px 24px;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        .teacher-btn {
+            background-color: var(--primary-blue);
+            color: white;
+            border: 1px solid var(--primary-blue);
+        }
+
+        .teacher-btn:hover {
+            background-color: var(--primary-blue-hover);
+            border-color: var(--primary-blue-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.3);
+        }
+
+        .student-btn {
+            background-color: var(--primary-green);
+            color: white;
+            border: 1px solid var(--primary-green);
+        }
+
+        .student-btn:hover {
+            background-color: var(--primary-green-hover);
+            border-color: var(--primary-green-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(16, 185, 129, 0.3);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="portal-container">
+        <div class="logo-container">
+            <img class="school-logo" src="school_logo.png" alt="School Logo" onerror="this.style.display='none'; document.getElementById('text-logo').style.display='block';">
+            <h2 id="text-logo" style="display:none; color: var(--primary-blue); margin: 0 0 10px 0; font-size: 32px;">Class</h2>
+        </div>
+        
+        <h1>Nabumali High School </h1>
+        <p>eLearning.</p>
+        
+        <div class="button-group">
+            <a href="teacher.html" class="portal-btn teacher-btn">
+                <span><b>Create Class (Teacher)</b></span>
+            </a>
+            <a href="student.html" class="portal-btn student-btn">
+                <span><b> Join Class (Student)</b></span>
+            </a>
+        </div>
+    </div>
+
+</body>
+</html>

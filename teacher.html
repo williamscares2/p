@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Panel - Online Classroom</title>
+    <script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: #111215;
+            color: #f1f5f9;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+        }
+        .classroom-container {
+            background: #1e1e24;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+            width: 100%;
+            max-width: 1200px;
+        }
+        .share-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .code-display-wrapper {
+            background: #141419;
+            padding: 8px 16px;
+            border-radius: 8px;
+            border: 2px dashed #3b82f6;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .code-display {
+            font-size: 26px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            color: #3b82f6;
+        }
+        .copy-btn {
+            padding: 8px 16px;
+            font-size: 14px;
+            font-weight: bold;
+            background-color: #3b82f6;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .copy-btn:hover { background-color: #2563eb; }
+        
+        .screen-btn {
+            padding: 10px 20px;
+            font-size: 14px;
+            font-weight: bold;
+            background-color: #e67e22;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 4px 10px rgba(230, 126, 34, 0.2);
+        }
+        .screen-btn:hover { background-color: #d35400; }
+        .screen-btn.sharing { background-color: #e74c3c; }
+        .screen-btn.sharing:hover { background-color: #c0392b; }
+
+        .status { margin-bottom: 20px; font-weight: bold; color: #eab308; }
+        
+        .workspace {
+            display: grid;
+            grid-template-columns: 1.2fr 2fr;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        @media (max-width: 900px) {
+            .workspace { grid-template-columns: 1fr; }
+        }
+        
+        .teacher-box {
+            background: #141419;
+            padding: 15px;
+            border-radius: 10px;
+            border: 2px solid #3b82f6;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .students-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            background: #141419;
+            padding: 15px;
+            border-radius: 10px;
+            border: 2px solid #334155;
+            min-height: 300px;
+            align-content: start;
+        }
+        
+        .video-box {
+            background: #1e1e24;
+            padding: 8px;
+            border-radius: 8px;
+            border: 1px solid #475569;
+            position: relative;
+        }
+        video {
+            width: 100%;
+            border-radius: 6px;
+            background: #000;
+            aspect-ratio: 4 / 3;
+            object-fit: cover;
+        }
+        .local-video {
+            transform: scaleX(-1); /* Mirror teacher's preview naturally */
+        }
+        /* When sharing screen, do not mirror the video element so text reads correctly */
+        .local-video.screen-active {
+            transform: none;
+        }
+        p { margin: 6px 0 0 0; font-size: 13px; color: #94a3b8; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <div class="classroom-container">
+<img src="school_logo.png" alt="School Logo" height="60" onerror="this.style.display='none';">
+        <h2>eNabumali Teacher Classroom Hub</h2>
+        <div id="status" class="status">Requesting permissions...</div>
+        
+        <div class="share-row">
+            <span>Class Code:</span>
+            <div class="code-display-wrapper">
+                <div id="class-code" class="code-display">------</div>
+                <button class="copy-btn" id="copy-btn" onclick="copyCode()">Copy Code</button>
+            </div>
+            <button class="screen-btn" id="screen-btn" onclick="toggleScreenShare()" disabled>🖥️ Share Screen</button>
+        </div>
+
+        <div class="workspace">
+            <div class="teacher-box">
+                <video id="local-video" class="local-video" autoplay playsinline muted></video>
+                <p id="teacher-view-label">👤 You (Teacher View - Camera)</p>
+            </div>
+            
+            <div>
+                <p style="text-align: left; margin-bottom: 10px; color: #3b82f6;">🎓 Connected Students (Limit: 8 visible)</p>
+                <div class="students-grid" id="students-grid">
+                    </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let localStream;      // Camera and Audio stream
+        let screenStream;     // Screen share stream
+        let peer;
+        let isScreenSharing = false;
+        let activeStudentCalls = {}; // Track call objects by student peer ID
+        const MAX_VISIBLE_STUDENTS = 8;
+        
+        const roomCode = Math.floor(100000 + Math.random() * 900000).toString();
+        document.getElementById('class-code').textContent = roomCode;
+
+        function copyCode() {
+            navigator.clipboard.writeText(roomCode).then(() => {
+                const copyBtn = document.getElementById('copy-btn');
+                copyBtn.textContent = "Copied! ✓";
+                copyBtn.style.backgroundColor = "#2ecc71";
+                setTimeout(() => {
+                    copyBtn.textContent = "Copy Code";
+                    copyBtn.style.backgroundColor = "#3b82f6";
+                }, 2000);
+            }).catch(err => console.error("Error copying code: ", err));
+        }
+
+        async function initClassroom() {
+            try {
+                // Get teacher camera & microphone tracks
+                localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+                document.getElementById('local-video').srcObject = localStream;
+
+                // Enable screen share button once camera is configured
+                document.getElementById('screen-btn').disabled = false;
+
+                peer = new Peer('classroom-' + roomCode);
+
+                peer.on('open', () => {
+                    document.getElementById('status').textContent = "🟢 Classroom Live! Share the code with your students.";
+                    document.getElementById('status').style.color = "#2ecc71";
+                });
+
+                peer.on('error', (err) => {
+                    console.error(err);
+                    document.getElementById('status').textContent = "❌ Connection distribution error.";
+                });
+
+                peer.on('call', (call) => {
+                    const studentId = call.peer;
+
+                    const currentCount = Object.keys(activeStudentCalls).length;
+                    if (currentCount >= MAX_VISIBLE_STUDENTS) {
+                        console.warn("Classroom full. Rejecting connection from " + studentId);
+                        call.close();
+                        return;
+                    }
+
+                    // Answer the call with whatever stream is currently active (Camera or Screen Share)
+                    const activeOutgoingStream = isScreenSharing ? screenStream : localStream;
+                    call.answer(activeOutgoingStream);
+                    activeStudentCalls[studentId] = call;
+
+                    call.on('stream', (remoteStream) => {
+                        renderStudentFeed(studentId, remoteStream);
+                    });
+
+                    call.on('close', () => {
+                        removeStudentFeed(studentId);
+                    });
+                });
+
+            } catch (err) {
+                document.getElementById('status').textContent = "⚠️ Camera & Mic access required to host.";
+                console.error(err);
+            }
+        }
+
+        // Handles Toggling Screen Sharing
+        async function toggleScreenShare() {
+            const screenBtn = document.getElementById('screen-btn');
+            const localVideo = document.getElementById('local-video');
+            const label = document.getElementById('teacher-view-label');
+
+            if (!isScreenSharing) {
+                try {
+                    // Capture Screen (Video only, keep original audio going)
+                    screenStream = await navigator.mediaDevices.getDisplayMedia({ video: true });
+                    const screenTrack = screenStream.getVideoTracks()[0];
+
+                    // Watch for when the user clicks browser's native "Stop Sharing" button
+                    screenTrack.onended = () => {
+                        stopScreenShare();
+                    };
+
+                    // Swap track for all active WebRTC student peer connections
+                    replaceVideoTrackInCalls(screenTrack);
+
+                    // Update Local UI elements
+                    localVideo.srcObject = screenStream;
+                    localVideo.classList.add('screen-active');
+                    label.textContent = "🖥️ You (Sharing Screen)";
+                    screenBtn.textContent = "⏹️ Stop Sharing";
+                    screenBtn.classList.add('sharing');
+                    isScreenSharing = true;
+
+                } catch (err) {
+                    console.error("Screen sharing cancelled or failed: ", err);
+                }
+            } else {
+                stopScreenShare();
+            }
+        }
+
+        // Stops Screen Sharing and returns to normal Camera feed
+        function stopScreenShare() {
+            if (!isScreenSharing) return;
+
+            const screenBtn = document.getElementById('screen-btn');
+            const localVideo = document.getElementById('local-video');
+            const label = document.getElementById('teacher-view-label');
+
+            // Stop screen stream tracks
+            if (screenStream) {
+                screenStream.getTracks().forEach(track => track.stop());
+            }
+
+            // Restore camera video track on all active connections
+            const cameraVideoTrack = localStream.getVideoTracks()[0];
+            replaceVideoTrackInCalls(cameraVideoTrack);
+
+            // Restore Local UI elements back to camera
+            localVideo.srcObject = localStream;
+            localVideo.classList.remove('screen-active');
+            label.textContent = "👤 You (Teacher View - Camera)";
+            screenBtn.textContent = "🖥️ Share Screen";
+            screenBtn.classList.remove('sharing');
+            isScreenSharing = false;
+        }
+
+        // Swaps outgoing stream video track seamlessly for active peer connections
+        function replaceVideoTrackInCalls(newTrack) {
+            for (let studentId in activeStudentCalls) {
+                const call = activeStudentCalls[studentId];
+                if (call.peerConnection) {
+                    const senders = call.peerConnection.getSenders();
+                    const videoSender = senders.find(sender => sender.track && sender.track.kind === 'video');
+                    if (videoSender) {
+                        videoSender.replaceTrack(newTrack);
+                    }
+                }
+            }
+        }
+
+        function renderStudentFeed(id, stream) {
+            if (document.getElementById(`box-${id}`)) return;
+
+            const grid = document.getElementById('students-grid');
+            const box = document.createElement('div');
+            box.className = 'video-box';
+            box.id = `box-${id}`;
+
+            const video = document.createElement('video');
+            video.srcObject = stream;
+            video.autoplay = true;
+            video.playsinline = true;
+
+            const label = document.createElement('p');
+            label.textContent = `🎓 Student (${id.substring(0, 5)})`;
+
+            box.appendChild(video);
+            box.appendChild(label);
+            grid.appendChild(box);
+        }
+
+        function removeStudentFeed(id) {
+            const box = document.getElementById(`box-${id}`);
+            if (box) box.remove();
+            delete activeStudentCalls[id];
+        }
+
+        window.onload = initClassroom;
+    </script>
+</body>
+</html>
