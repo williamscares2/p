@@ -173,7 +173,7 @@
         let peer;
         let isScreenSharing = false;
         let activeStudentCalls = {}; // Track call objects by student peer ID
-        const MAX_VISIBLE_STUDENTS = 8;
+        const MAX_VISIBLE_STUDENTS = 1000;
         
         const roomCode = Math.floor(100000 + Math.random() * 900000).toString();
         document.getElementById('class-code').textContent = roomCode;
@@ -346,5 +346,8 @@
 
         window.onload = initClassroom;
     </script>
+    
+    
+    
 </body>
 </html>
